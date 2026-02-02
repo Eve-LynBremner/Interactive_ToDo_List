@@ -74,8 +74,6 @@ input[type="text"] {
 }
 
 ul li { 
-     list-style: none; 
      display: flex; 
-     align-items: 
-     center; gap: 0.5rem; 
+     justify-content: space-between;
 }

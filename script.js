@@ -13,9 +13,11 @@ function onClickSearhButton() {
 
   newLiEl.innerHTML = `
             ${toDoItem.value} 
-            <button id="deleteButton">delete</button>
-            <button id="completeButton">complete</button>
-`;
+            <div>
+                <button id="deleteButton">delete</button>
+                <button id="completeButton">complete</button>
+            </div>
+  `;
 
   toDoContent.appendChild(newLiEl);
 
