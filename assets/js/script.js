@@ -57,6 +57,7 @@ function onClickAdd() {
   // console.log(newLiEl);
 
   toDoItem.value = "" ;
+  console.log(itemList);
 }
 
 // Note to self:
@@ -80,10 +81,11 @@ document.getElementById("todo").addEventListener("click", function(event){
   if (event.target.id === "deleteButton") {
       // remove item from array
       var toDoItemValue = event.target.parentElement.firstChild.textContent;  
-      itemList.pop(toDoItemValue.toLowerCase());
+      itemList = itemList.filter(item => item !== toDoItemValue.toLowerCase());
 
       // remove item from to do list
       event.target.parentElement.remove();
+      console.log(itemList);
   } 
   else if (event.target.id === "completeButton") {
     // retrieve the to do list item so that we can insert it into the completed list. 
@@ -92,7 +94,7 @@ document.getElementById("todo").addEventListener("click", function(event){
     // console.log(event.target.parentElement.firstChild.textContent)
 
     // remove item from array
-    itemList.pop(toDoItemValue.toLowerCase());
+    itemList = itemList.filter(item => item !== toDoItemValue.toLowerCase());
 
     var completedList = document.getElementById("completed");
     var newLiEl = document.createElement("li");
@@ -101,26 +103,33 @@ document.getElementById("todo").addEventListener("click", function(event){
 
     // remove item from to do list
     event.target.parentElement.remove();
+    console.log(itemList);
   }
     else if (event.target.id === "editButton") {
     currentItem = event.target.parentElement.firstChild.textContent;
     //
-    newItem = prompt("Edit your item:", currentItem);
+    newItem = prompt("Edit your item:", event.target.parentElement.firstChild.textContent);
 
     // if user does not enter anything then exit without changes
     if (!newItem || newItem.trim() === "") {
       return;
     }
+
+    // check if user enters item already in the list and
+    if(itemList.includes(newItem.trim().toLowerCase())){
+      alert("Item already in list.")
+      return;
+    }
     
     // need to remove edited item from array 
-    itemList.pop(event.target.parentElement.firstChild.textContent.toLowerCase());
+    itemList = itemList.filter(item => item !== currentItem.toLowerCase());
 
     // apply edit
     event.target.parentElement.firstChild.textContent = newItem.trim();
 
     // add edit to array
     itemList.push(newItem.trim().toLowerCase());
-
+    console.log(itemList);
   }
 });
 
