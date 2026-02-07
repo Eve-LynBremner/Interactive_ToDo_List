@@ -78,11 +78,12 @@ document.getElementById("todo").addEventListener("click", function(event){
   // console.log(event.target.parentElement);
   
   if (event.target.id === "deleteButton") {
-      event.target.parentElement.remove();
-
       // remove item from array
       var toDoItemValue = event.target.parentElement.firstChild.textContent;  
       itemList.pop(toDoItemValue.toLowerCase());
+
+      // remove item from to do list
+      event.target.parentElement.remove();
   } 
   else if (event.target.id === "completeButton") {
     // retrieve the to do list item so that we can insert it into the completed list. 
